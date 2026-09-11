@@ -1,396 +1,443 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Interactive Learning Dashboard</title>
     <style>
-        /* CSS Exercise: Students will enhance these styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      /* CSS Exercise: Students will enhance these styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-        }
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+      }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+      }
 
-        header {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
+      header {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
 
-        .dashboard {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-bottom: 20px;
-        }
+      .dashboard {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        margin-bottom: 20px;
+      }
 
-        .card {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
+      .card {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+      }
 
-        .card:hover {
-            transform: translateY(-5px);
-        }
+      .card:hover {
+        transform: translateY(-5px);
+      }
 
-        .progress-bar {
-            background: #e0e0e0;
-            border-radius: 10px;
-            height: 20px;
-            margin: 10px 0;
-            overflow: hidden;
-        }
+      .progress-bar {
+        background: #e0e0e0;
+        border-radius: 10px;
+        height: 20px;
+        margin: 10px 0;
+        overflow: hidden;
+      }
 
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #4CAF50, #45a049);
-            border-radius: 10px;
-            transition: width 0.3s ease;
-        }
+      .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #4caf50, #45a049);
+        border-radius: 10px;
+        transition: width 0.3s ease;
+      }
 
-        .btn {
-            background: #4CAF50;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background 0.3s ease;
-        }
+      .btn {
+        background: #4caf50;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background 0.3s ease;
+      }
 
-        .btn:hover {
-            background: #45a049;
-        }
+      .btn:hover {
+        background: #45a049;
+      }
 
-        .input-group {
-            margin: 10px 0;
-        }
+      .input-group {
+        margin: 10px 0;
+      }
 
-        .input-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
+      .input-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
 
-        .input-group input, 
-        .input-group select, 
-        .input-group textarea {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 16px;
-        }
+      .input-group input,
+      .input-group select,
+      .input-group textarea {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 16px;
+      }
 
-        .exercise-output {
-            background: #f8f9fa;
-            border: 1px solid #e9ecef;
-            border-radius: 4px;
-            padding: 15px;
-            margin-top: 10px;
-            font-family: 'Courier New', monospace;
-        }
+      .exercise-output {
+        background: #f8f9fa;
+        border: 1px solid #e9ecef;
+        border-radius: 4px;
+        padding: 15px;
+        margin-top: 10px;
+        font-family: "Courier New", monospace;
+      }
 
-        .hidden {
-            display: none;
-        }
+      .hidden {
+        display: none;
+      }
 
-        /* TODO: Students add more CSS styles here */
+      /* TODO: Students add more CSS styles here */
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <header>
-            <h1>🎓 Educational Tech Stack - Interactive Learning Dashboard</h1>
-            <p>Welcome to your personalized learning experience! Complete exercises, track progress, and build your skills.</p>
-        </header>
+      <header>
+        <h1>🎓 Educational Tech Stack - Interactive Learning Dashboard</h1>
+        <p>
+          Welcome to your personalized learning experience! Complete exercises,
+          track progress, and build your skills.
+        </p>
+      </header>
 
-        <div class="dashboard">
-            <!-- Progress Tracking Card -->
-            <div class="card">
-                <h2>📊 Learning Progress</h2>
-                <div class="progress-item">
-                    <label>Programming Fundamentals</label>
-                    <div class="progress-bar">
-                        <div class="progress-fill" id="prog-progress" style="width: 75%;"></div>
-                    </div>
-                    <span id="prog-percent">75%</span>
-                </div>
-                
-                <div class="progress-item">
-                    <label>Web Development</label>
-                    <div class="progress-bar">
-                        <div class="progress-fill" id="web-progress" style="width: 45%;"></div>
-                    </div>
-                    <span id="web-percent">45%</span>
-                </div>
-                
-                <div class="progress-item">
-                    <label>Data Science</label>
-                    <div class="progress-bar">
-                        <div class="progress-fill" id="data-progress" style="width: 20%;"></div>
-                    </div>
-                    <span id="data-percent">20%</span>
-                </div>
+      <div class="dashboard">
+        <!-- Progress Tracking Card -->
+        <div class="card">
+          <h2>📊 Learning Progress</h2>
+          <div class="progress-item">
+            <label>Programming Fundamentals</label>
+            <div class="progress-bar">
+              <div
+                class="progress-fill"
+                id="prog-progress"
+                style="width: 75%"
+              ></div>
+            </div>
+            <span id="prog-percent">75%</span>
+          </div>
+
+          <div class="progress-item">
+            <label>Web Development</label>
+            <div class="progress-bar">
+              <div
+                class="progress-fill"
+                id="web-progress"
+                style="width: 45%"
+              ></div>
+            </div>
+            <span id="web-percent">45%</span>
+          </div>
+
+          <div class="progress-item">
+            <label>Data Science</label>
+            <div class="progress-bar">
+              <div
+                class="progress-fill"
+                id="data-progress"
+                style="width: 20%"
+              ></div>
+            </div>
+            <span id="data-percent">20%</span>
+          </div>
+        </div>
+
+        <!-- Interactive Calculator -->
+        <div class="card">
+          <h2>🧮 Interactive Calculator</h2>
+          <p>Practice JavaScript by building calculator functions!</p>
+
+          <div class="input-group">
+            <label for="num1">First Number:</label>
+            <input type="number" id="num1" placeholder="Enter first number" />
+          </div>
+
+          <div class="input-group">
+            <label for="operation">Operation:</label>
+            <select id="operation">
+              <option value="add">Addition (+)</option>
+              <option value="subtract">Subtraction (-)</option>
+              <option value="multiply">Multiplication (×)</option>
+              <option value="divide">Division (÷)</option>
+              <option value="power">Power (^)</option>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <label for="num2">Second Number:</label>
+            <input type="number" id="num2" placeholder="Enter second number" />
+          </div>
+
+          <button class="btn" onclick="calculate()">Calculate</button>
+          <div class="exercise-output" id="calc-result">
+            Result will appear here...
+          </div>
+        </div>
+
+        <!-- Grade Calculator -->
+        <div class="card">
+          <h2>📚 Grade Calculator</h2>
+          <p>Calculate your GPA and track academic performance!</p>
+
+          <div class="input-group">
+            <label for="grades">Enter grades (comma-separated):</label>
+            <input type="text" id="grades" placeholder="85, 92, 78, 88, 95" />
+          </div>
+
+          <button class="btn" onclick="calculateGrades()">Calculate GPA</button>
+
+          <div class="exercise-output" id="grade-result">
+            GPA and grade breakdown will appear here...
+          </div>
+        </div>
+
+        <!-- Learning Notes -->
+        <div class="card">
+          <h2>📝 Learning Journal</h2>
+          <p>Keep track of your learning journey and reflections!</p>
+
+          <div class="input-group">
+            <label for="note-title">Note Title:</label>
+            <input
+              type="text"
+              id="note-title"
+              placeholder="What did you learn today?"
+            />
+          </div>
+
+          <div class="input-group">
+            <label for="note-content">Content:</label>
+            <textarea
+              id="note-content"
+              rows="4"
+              placeholder="Share your thoughts, challenges, and achievements..."
+            ></textarea>
+          </div>
+
+          <button class="btn" onclick="saveNote()">Save Note</button>
+          <button class="btn" onclick="loadNotes()" style="background: #2196f3">
+            Load Notes
+          </button>
+
+          <div class="exercise-output" id="notes-display">
+            Your saved notes will appear here...
+          </div>
+        </div>
+
+        <!-- Programming Quiz -->
+        <div class="card">
+          <h2>🎯 Quick Programming Quiz</h2>
+          <p>Test your knowledge with interactive questions!</p>
+
+          <div id="quiz-container">
+            <div class="quiz-question" id="current-question">
+              <h3>Question 1: What is a variable in programming?</h3>
+              <div>
+                <input type="radio" name="q1" value="A" id="q1a" />
+                <label for="q1a">A storage location with a name</label>
+              </div>
+              <div>
+                <input type="radio" name="q1" value="B" id="q1b" />
+                <label for="q1b">A type of loop</label>
+              </div>
+              <div>
+                <input type="radio" name="q1" value="C" id="q1c" />
+                <label for="q1c">A programming language</label>
+              </div>
+              <div>
+                <input type="radio" name="q1" value="D" id="q1d" />
+                <label for="q1d">A computer virus</label>
+              </div>
             </div>
 
-            <!-- Interactive Calculator -->
-            <div class="card">
-                <h2>🧮 Interactive Calculator</h2>
-                <p>Practice JavaScript by building calculator functions!</p>
-                
-                <div class="input-group">
-                    <label for="num1">First Number:</label>
-                    <input type="number" id="num1" placeholder="Enter first number">
-                </div>
-                
-                <div class="input-group">
-                    <label for="operation">Operation:</label>
-                    <select id="operation">
-                        <option value="add">Addition (+)</option>
-                        <option value="subtract">Subtraction (-)</option>
-                        <option value="multiply">Multiplication (×)</option>
-                        <option value="divide">Division (÷)</option>
-                        <option value="power">Power (^)</option>
-                    </select>
-                </div>
-                
-                <div class="input-group">
-                    <label for="num2">Second Number:</label>
-                    <input type="number" id="num2" placeholder="Enter second number">
-                </div>
-                
-                <button class="btn" onclick="calculate()">Calculate</button>
-                <div class="exercise-output" id="calc-result">
-                    Result will appear here...
-                </div>
-            </div>
+            <button class="btn" onclick="checkAnswer()">Check Answer</button>
+            <button
+              class="btn"
+              onclick="nextQuestion()"
+              style="background: #ff9800"
+            >
+              Next Question
+            </button>
+          </div>
 
-            <!-- Grade Calculator -->
-            <div class="card">
-                <h2>📚 Grade Calculator</h2>
-                <p>Calculate your GPA and track academic performance!</p>
-                
-                <div class="input-group">
-                    <label for="grades">Enter grades (comma-separated):</label>
-                    <input type="text" id="grades" placeholder="85, 92, 78, 88, 95">
-                </div>
-                
-                <button class="btn" onclick="calculateGrades()">Calculate GPA</button>
-                
-                <div class="exercise-output" id="grade-result">
-                    GPA and grade breakdown will appear here...
-                </div>
-            </div>
+          <div class="exercise-output" id="quiz-result">
+            Quiz results will appear here...
+          </div>
+        </div>
 
-            <!-- Learning Notes -->
-            <div class="card">
-                <h2>📝 Learning Journal</h2>
-                <p>Keep track of your learning journey and reflections!</p>
-                
-                <div class="input-group">
-                    <label for="note-title">Note Title:</label>
-                    <input type="text" id="note-title" placeholder="What did you learn today?">
-                </div>
-                
-                <div class="input-group">
-                    <label for="note-content">Content:</label>
-                    <textarea id="note-content" rows="4" placeholder="Share your thoughts, challenges, and achievements..."></textarea>
-                </div>
-                
-                <button class="btn" onclick="saveNote()">Save Note</button>
-                <button class="btn" onclick="loadNotes()" style="background: #2196F3;">Load Notes</button>
-                
-                <div class="exercise-output" id="notes-display">
-                    Your saved notes will appear here...
-                </div>
-            </div>
+        <!-- Code Editor Simulation -->
+        <div class="card">
+          <h2>💻 Mini Code Editor</h2>
+          <p>Practice writing and running simple JavaScript code!</p>
 
-            <!-- Programming Quiz -->
-            <div class="card">
-                <h2>🎯 Quick Programming Quiz</h2>
-                <p>Test your knowledge with interactive questions!</p>
-                
-                <div id="quiz-container">
-                    <div class="quiz-question" id="current-question">
-                        <h3>Question 1: What is a variable in programming?</h3>
-                        <div>
-                            <input type="radio" name="q1" value="A" id="q1a">
-                            <label for="q1a">A storage location with a name</label>
-                        </div>
-                        <div>
-                            <input type="radio" name="q1" value="B" id="q1b">
-                            <label for="q1b">A type of loop</label>
-                        </div>
-                        <div>
-                            <input type="radio" name="q1" value="C" id="q1c">
-                            <label for="q1c">A programming language</label>
-                        </div>
-                        <div>
-                            <input type="radio" name="q1" value="D" id="q1d">
-                            <label for="q1d">A computer virus</label>
-                        </div>
-                    </div>
-                    
-                    <button class="btn" onclick="checkAnswer()">Check Answer</button>
-                    <button class="btn" onclick="nextQuestion()" style="background: #FF9800;">Next Question</button>
-                </div>
-                
-                <div class="exercise-output" id="quiz-result">
-                    Quiz results will appear here...
-                </div>
-            </div>
-
-            <!-- Code Editor Simulation -->
-            <div class="card">
-                <h2>💻 Mini Code Editor</h2>
-                <p>Practice writing and running simple JavaScript code!</p>
-                
-                <div class="input-group">
-                    <label for="code-input">Write your JavaScript code:</label>
-                    <textarea id="code-input" rows="6" placeholder="// Write your JavaScript code here
+          <div class="input-group">
+            <label for="code-input">Write your JavaScript code:</label>
+            <textarea
+              id="code-input"
+              rows="6"
+              placeholder="// Write your JavaScript code here
 console.log('Hello, World!');
 let x = 10;
 let y = 5;
-console.log('Sum:', x + y);"></textarea>
-                </div>
-                
-                <button class="btn" onclick="runCode()">Run Code</button>
-                <button class="btn" onclick="clearCode()" style="background: #f44336;">Clear</button>
-                
-                <div class="exercise-output" id="code-output">
-                    Code output will appear here...
-                </div>
-            </div>
+console.log('Sum:', x + y);"
+            ></textarea>
+          </div>
+
+          <button class="btn" onclick="runCode()">Run Code</button>
+          <button class="btn" onclick="clearCode()" style="background: #f44336">
+            Clear
+          </button>
+
+          <div class="exercise-output" id="code-output">
+            Code output will appear here...
+          </div>
         </div>
+      </div>
     </div>
 
     <script>
-        // JavaScript Exercise: Students will implement these functions
+      // JavaScript Exercise: Students will implement these functions
 
-        // Calculator Functions
-        function calculate() {
-            // TODO: Implement calculator logic
-            const num1 = parseFloat(document.getElementById('num1').value);
-            const num2 = parseFloat(document.getElementById('num2').value);
-            const operation = document.getElementById('operation').value;
-            const resultDiv = document.getElementById('calc-result');
-            
-            if (isNaN(num1) || isNaN(num2)) {
-                resultDiv.innerHTML = '<span style="color: red;">Please enter valid numbers!</span>';
-                return;
+      // Calculator Functions
+      function calculate() {
+        // TODO: Implement calculator logic
+        const num1 = parseFloat(document.getElementById("num1").value);
+        const num2 = parseFloat(document.getElementById("num2").value);
+        const operation = document.getElementById("operation").value;
+        const resultDiv = document.getElementById("calc-result");
+
+        if (isNaN(num1) || isNaN(num2)) {
+          resultDiv.innerHTML =
+            '<span style="color: red;">Please enter valid numbers!</span>';
+          return;
+        }
+
+        let result;
+        let operationSymbol;
+
+        switch (operation) {
+          case "add":
+            result = num1 + num2;
+            operationSymbol = "+";
+            break;
+          case "subtract":
+            result = num1 - num2;
+            operationSymbol = "-";
+            break;
+          case "multiply":
+            result = num1 * num2;
+            operationSymbol = "×";
+            break;
+          case "divide":
+            if (num2 === 0) {
+              resultDiv.innerHTML =
+                '<span style="color: red;">Cannot divide by zero!</span>';
+              return;
             }
-            
-            let result;
-            let operationSymbol;
-            
-            switch (operation) {
-                case 'add':
-                    result = num1 + num2;
-                    operationSymbol = '+';
-                    break;
-                case 'subtract':
-                    result = num1 - num2;
-                    operationSymbol = '-';
-                    break;
-                case 'multiply':
-                    result = num1 * num2;
-                    operationSymbol = '×';
-                    break;
-                case 'divide':
-                    if (num2 === 0) {
-                        resultDiv.innerHTML = '<span style="color: red;">Cannot divide by zero!</span>';
-                        return;
-                    }
-                    result = num1 / num2;
-                    operationSymbol = '÷';
-                    break;
-                case 'power':
-                    result = Math.pow(num1, num2);
-                    operationSymbol = '^';
-                    break;
-                default:
-                    resultDiv.innerHTML = '<span style="color: red;">Invalid operation!</span>';
-                    return;
-            }
-            
-            resultDiv.innerHTML = `
+            result = num1 / num2;
+            operationSymbol = "÷";
+            break;
+          case "power":
+            result = Math.pow(num1, num2);
+            operationSymbol = "^";
+            break;
+          default:
+            resultDiv.innerHTML =
+              '<span style="color: red;">Invalid operation!</span>';
+            return;
+        }
+
+        resultDiv.innerHTML = `
                 <strong>Calculation:</strong> ${num1} ${operationSymbol} ${num2} = <strong>${result}</strong>
                 <br><small>Operation: ${operation}</small>
             `;
+      }
+
+      // Grade Calculator Functions
+      function calculateGrades() {
+        // TODO: Implement grade calculation
+        const gradesInput = document.getElementById("grades").value;
+        const resultDiv = document.getElementById("grade-result");
+
+        if (!gradesInput.trim()) {
+          resultDiv.innerHTML =
+            '<span style="color: red;">Please enter some grades!</span>';
+          return;
         }
 
-        // Grade Calculator Functions
-        function calculateGrades() {
-            // TODO: Implement grade calculation
-            const gradesInput = document.getElementById('grades').value;
-            const resultDiv = document.getElementById('grade-result');
-            
-            if (!gradesInput.trim()) {
-                resultDiv.innerHTML = '<span style="color: red;">Please enter some grades!</span>';
-                return;
-            }
-            
-            try {
-                const grades = gradesInput.split(',').map(grade => parseFloat(grade.trim()));
-                
-                // Validate grades
-                const invalidGrades = grades.filter(grade => isNaN(grade) || grade < 0 || grade > 100);
-                if (invalidGrades.length > 0) {
-                    resultDiv.innerHTML = '<span style="color: red;">Please enter valid grades (0-100)!</span>';
-                    return;
-                }
-                
-                // Calculate statistics
-                const average = grades.reduce((sum, grade) => sum + grade, 0) / grades.length;
-                const highest = Math.max(...grades);
-                const lowest = Math.min(...grades);
-                
-                // Determine letter grade
-                let letterGrade;
-                if (average >= 90) letterGrade = 'A';
-                else if (average >= 80) letterGrade = 'B';
-                else if (average >= 70) letterGrade = 'C';
-                else if (average >= 60) letterGrade = 'D';
-                else letterGrade = 'F';
-                
-                // Calculate GPA (4.0 scale)
-                let gpa;
-                if (average >= 97) gpa = 4.0;
-                else if (average >= 93) gpa = 3.7;
-                else if (average >= 90) gpa = 3.3;
-                else if (average >= 87) gpa = 3.0;
-                else if (average >= 83) gpa = 2.7;
-                else if (average >= 80) gpa = 2.3;
-                else if (average >= 77) gpa = 2.0;
-                else if (average >= 73) gpa = 1.7;
-                else if (average >= 70) gpa = 1.3;
-                else if (average >= 67) gpa = 1.0;
-                else if (average >= 60) gpa = 0.7;
-                else gpa = 0.0;
-                
-                resultDiv.innerHTML = `
+        try {
+          const grades = gradesInput
+            .split(",")
+            .map((grade) => parseFloat(grade.trim()));
+
+          // Validate grades
+          const invalidGrades = grades.filter(
+            (grade) => isNaN(grade) || grade < 0 || grade > 100,
+          );
+          if (invalidGrades.length > 0) {
+            resultDiv.innerHTML =
+              '<span style="color: red;">Please enter valid grades (0-100)!</span>';
+            return;
+          }
+
+          // Calculate statistics
+          const average =
+            grades.reduce((sum, grade) => sum + grade, 0) / grades.length;
+          const highest = Math.max(...grades);
+          const lowest = Math.min(...grades);
+
+          // Determine letter grade
+          let letterGrade;
+          if (average >= 90) letterGrade = "A";
+          else if (average >= 80) letterGrade = "B";
+          else if (average >= 70) letterGrade = "C";
+          else if (average >= 60) letterGrade = "D";
+          else letterGrade = "F";
+
+          // Calculate GPA (4.0 scale)
+          let gpa;
+          if (average >= 97) gpa = 4.0;
+          else if (average >= 93) gpa = 3.7;
+          else if (average >= 90) gpa = 3.3;
+          else if (average >= 87) gpa = 3.0;
+          else if (average >= 83) gpa = 2.7;
+          else if (average >= 80) gpa = 2.3;
+          else if (average >= 77) gpa = 2.0;
+          else if (average >= 73) gpa = 1.7;
+          else if (average >= 70) gpa = 1.3;
+          else if (average >= 67) gpa = 1.0;
+          else if (average >= 60) gpa = 0.7;
+          else gpa = 0.0;
+
+          resultDiv.innerHTML = `
                     <strong>Grade Analysis:</strong><br>
                     Average: <strong>${average.toFixed(2)}</strong><br>
                     Letter Grade: <strong>${letterGrade}</strong><br>
@@ -399,206 +446,230 @@ console.log('Sum:', x + y);"></textarea>
                     Lowest: ${lowest}<br>
                     Total Grades: ${grades.length}
                 `;
-                
-            } catch (error) {
-                resultDiv.innerHTML = '<span style="color: red;">Error processing grades. Please check your input!</span>';
-            }
+        } catch (error) {
+          resultDiv.innerHTML =
+            '<span style="color: red;">Error processing grades. Please check your input!</span>';
+        }
+      }
+
+      // Learning Notes Functions
+      let savedNotes = JSON.parse(localStorage.getItem("learningNotes")) || [];
+
+      function saveNote() {
+        // TODO: Implement note saving
+        const title = document.getElementById("note-title").value.trim();
+        const content = document.getElementById("note-content").value.trim();
+        const resultDiv = document.getElementById("notes-display");
+
+        if (!title || !content) {
+          resultDiv.innerHTML =
+            '<span style="color: red;">Please fill in both title and content!</span>';
+          return;
         }
 
-        // Learning Notes Functions
-        let savedNotes = JSON.parse(localStorage.getItem('learningNotes')) || [];
+        const note = {
+          id: Date.now(),
+          title: title,
+          content: content,
+          date: new Date().toLocaleDateString(),
+          time: new Date().toLocaleTimeString(),
+        };
 
-        function saveNote() {
-            // TODO: Implement note saving
-            const title = document.getElementById('note-title').value.trim();
-            const content = document.getElementById('note-content').value.trim();
-            const resultDiv = document.getElementById('notes-display');
-            
-            if (!title || !content) {
-                resultDiv.innerHTML = '<span style="color: red;">Please fill in both title and content!</span>';
-                return;
-            }
-            
-            const note = {
-                id: Date.now(),
-                title: title,
-                content: content,
-                date: new Date().toLocaleDateString(),
-                time: new Date().toLocaleTimeString()
-            };
-            
-            savedNotes.unshift(note); // Add to beginning of array
-            localStorage.setItem('learningNotes', JSON.stringify(savedNotes));
-            
-            // Clear inputs
-            document.getElementById('note-title').value = '';
-            document.getElementById('note-content').value = '';
-            
-            resultDiv.innerHTML = '<span style="color: green;">Note saved successfully!</span>';
-            
-            // Auto-load notes after saving
-            setTimeout(loadNotes, 1000);
+        savedNotes.unshift(note); // Add to beginning of array
+        localStorage.setItem("learningNotes", JSON.stringify(savedNotes));
+
+        // Clear inputs
+        document.getElementById("note-title").value = "";
+        document.getElementById("note-content").value = "";
+
+        resultDiv.innerHTML =
+          '<span style="color: green;">Note saved successfully!</span>';
+
+        // Auto-load notes after saving
+        setTimeout(loadNotes, 1000);
+      }
+
+      function loadNotes() {
+        // TODO: Implement note loading
+        const resultDiv = document.getElementById("notes-display");
+        savedNotes = JSON.parse(localStorage.getItem("learningNotes")) || [];
+
+        if (savedNotes.length === 0) {
+          resultDiv.innerHTML =
+            "<em>No notes saved yet. Start by adding your first learning note!</em>";
+          return;
         }
 
-        function loadNotes() {
-            // TODO: Implement note loading
-            const resultDiv = document.getElementById('notes-display');
-            savedNotes = JSON.parse(localStorage.getItem('learningNotes')) || [];
-            
-            if (savedNotes.length === 0) {
-                resultDiv.innerHTML = '<em>No notes saved yet. Start by adding your first learning note!</em>';
-                return;
-            }
-            
-            let notesHTML = '<strong>Your Learning Notes:</strong><br><br>';
-            savedNotes.forEach(note => {
-                notesHTML += `
+        let notesHTML = "<strong>Your Learning Notes:</strong><br><br>";
+        savedNotes.forEach((note) => {
+          notesHTML += `
                     <div style="border-left: 3px solid #4CAF50; padding-left: 10px; margin-bottom: 15px;">
                         <strong>${note.title}</strong><br>
                         <small style="color: #666;">${note.date} at ${note.time}</small><br>
-                        <p style="margin: 5px 0;">${note.content.replace(/\n/g, '<br>')}</p>
+                        <p style="margin: 5px 0;">${note.content.replace(/\n/g, "<br>")}</p>
                     </div>
                 `;
-            });
-            
-            resultDiv.innerHTML = notesHTML;
+        });
+
+        resultDiv.innerHTML = notesHTML;
+      }
+
+      // Quiz Functions
+      let currentQuestionIndex = 0;
+      let score = 0;
+      const questions = [
+        {
+          question: "What is a variable in programming?",
+          options: [
+            "A storage location with a name",
+            "A type of loop",
+            "A programming language",
+            "A computer virus",
+          ],
+          correct: 0,
+        },
+        {
+          question: "Which HTML tag is used for the largest heading?",
+          options: ["<h6>", "<h1>", "<header>", "<title>"],
+          correct: 1,
+        },
+        {
+          question: "What does CSS stand for?",
+          options: [
+            "Computer Style Sheets",
+            "Creative Style Sheets",
+            "Cascading Style Sheets",
+            "Colorful Style Sheets",
+          ],
+          correct: 2,
+        },
+      ];
+
+      function checkAnswer() {
+        // TODO: Implement quiz answer checking
+        const selected = document.querySelector('input[name="q1"]:checked');
+        const resultDiv = document.getElementById("quiz-result");
+
+        if (!selected) {
+          resultDiv.innerHTML =
+            '<span style="color: orange;">Please select an answer!</span>';
+          return;
         }
 
-        // Quiz Functions
-        let currentQuestionIndex = 0;
-        let score = 0;
-        const questions = [
-            {
-                question: "What is a variable in programming?",
-                options: ["A storage location with a name", "A type of loop", "A programming language", "A computer virus"],
-                correct: 0
-            },
-            {
-                question: "Which HTML tag is used for the largest heading?",
-                options: ["<h6>", "<h1>", "<header>", "<title>"],
-                correct: 1
-            },
-            {
-                question: "What does CSS stand for?",
-                options: ["Computer Style Sheets", "Creative Style Sheets", "Cascading Style Sheets", "Colorful Style Sheets"],
-                correct: 2
-            }
-        ];
+        const currentQuestion = questions[currentQuestionIndex];
+        const selectedIndex = ["A", "B", "C", "D"].indexOf(selected.value);
 
-        function checkAnswer() {
-            // TODO: Implement quiz answer checking
-            const selected = document.querySelector('input[name="q1"]:checked');
-            const resultDiv = document.getElementById('quiz-result');
-            
-            if (!selected) {
-                resultDiv.innerHTML = '<span style="color: orange;">Please select an answer!</span>';
-                return;
-            }
-            
-            const currentQuestion = questions[currentQuestionIndex];
-            const selectedIndex = ['A', 'B', 'C', 'D'].indexOf(selected.value);
-            
-            if (selectedIndex === currentQuestion.correct) {
-                score++;
-                resultDiv.innerHTML = '<span style="color: green;">✓ Correct! Well done!</span>';
-            } else {
-                resultDiv.innerHTML = `<span style="color: red;">✗ Incorrect. The correct answer is: ${currentQuestion.options[currentQuestion.correct]}</span>`;
-            }
+        if (selectedIndex === currentQuestion.correct) {
+          score++;
+          resultDiv.innerHTML =
+            '<span style="color: green;">✓ Correct! Well done!</span>';
+        } else {
+          resultDiv.innerHTML = `<span style="color: red;">✗ Incorrect. The correct answer is: ${currentQuestion.options[currentQuestion.correct]}</span>`;
         }
+      }
 
-        function nextQuestion() {
-            // TODO: Implement next question functionality
-            currentQuestionIndex++;
-            
-            if (currentQuestionIndex >= questions.length) {
-                document.getElementById('quiz-result').innerHTML = `
+      function nextQuestion() {
+        // TODO: Implement next question functionality
+        currentQuestionIndex++;
+
+        if (currentQuestionIndex >= questions.length) {
+          document.getElementById("quiz-result").innerHTML = `
                     <strong>Quiz Complete!</strong><br>
                     Your score: ${score}/${questions.length}<br>
-                    Percentage: ${Math.round((score/questions.length) * 100)}%
+                    Percentage: ${Math.round((score / questions.length) * 100)}%
                 `;
-                return;
-            }
-            
-            // Load next question
-            const question = questions[currentQuestionIndex];
-            const questionContainer = document.getElementById('current-question');
-            
-            questionContainer.innerHTML = `
+          return;
+        }
+
+        // Load next question
+        const question = questions[currentQuestionIndex];
+        const questionContainer = document.getElementById("current-question");
+
+        questionContainer.innerHTML = `
                 <h3>Question ${currentQuestionIndex + 1}: ${question.question}</h3>
-                ${question.options.map((option, index) => `
+                ${question.options
+                  .map(
+                    (option, index) => `
                     <div>
                         <input type="radio" name="q1" value="${String.fromCharCode(65 + index)}" id="q${currentQuestionIndex + 1}${String.fromCharCode(97 + index)}">
                         <label for="q${currentQuestionIndex + 1}${String.fromCharCode(97 + index)}">${option}</label>
                     </div>
-                `).join('')}
+                `,
+                  )
+                  .join("")}
             `;
+      }
+
+      // Code Editor Functions
+      function runCode() {
+        // TODO: Implement code execution simulation
+        const code = document.getElementById("code-input").value;
+        const outputDiv = document.getElementById("code-output");
+
+        if (!code.trim()) {
+          outputDiv.innerHTML =
+            '<span style="color: orange;">Please enter some code to run!</span>';
+          return;
         }
 
-        // Code Editor Functions
-        function runCode() {
-            // TODO: Implement code execution simulation
-            const code = document.getElementById('code-input').value;
-            const outputDiv = document.getElementById('code-output');
-            
-            if (!code.trim()) {
-                outputDiv.innerHTML = '<span style="color: orange;">Please enter some code to run!</span>';
-                return;
-            }
-            
-            // Capture console.log output
-            let output = [];
-            const originalLog = console.log;
-            console.log = function(...args) {
-                output.push(args.map(arg => String(arg)).join(' '));
-                originalLog.apply(console, arguments);
-            };
-            
-            try {
-                // Execute the code
-                eval(code);
-                
-                if (output.length > 0) {
-                    outputDiv.innerHTML = `
+        // Capture console.log output
+        let output = [];
+        const originalLog = console.log;
+        console.log = function (...args) {
+          output.push(args.map((arg) => String(arg)).join(" "));
+          originalLog.apply(console, arguments);
+        };
+
+        try {
+          // Execute the code
+          eval(code);
+
+          if (output.length > 0) {
+            outputDiv.innerHTML = `
                         <strong>Output:</strong><br>
                         <div style="background: #000; color: #0f0; padding: 10px; border-radius: 4px; font-family: monospace;">
-                            ${output.join('<br>')}
+                            ${output.join("<br>")}
                         </div>
                     `;
-                } else {
-                    outputDiv.innerHTML = '<span style="color: blue;">Code executed successfully (no output).</span>';
-                }
-            } catch (error) {
-                outputDiv.innerHTML = `<span style="color: red;">Error: ${error.message}</span>`;
-            } finally {
-                // Restore original console.log
-                console.log = originalLog;
-            }
+          } else {
+            outputDiv.innerHTML =
+              '<span style="color: blue;">Code executed successfully (no output).</span>';
+          }
+        } catch (error) {
+          outputDiv.innerHTML = `<span style="color: red;">Error: ${error.message}</span>`;
+        } finally {
+          // Restore original console.log
+          console.log = originalLog;
         }
+      }
 
-        function clearCode() {
-            document.getElementById('code-input').value = '';
-            document.getElementById('code-output').innerHTML = 'Code output will appear here...';
-        }
+      function clearCode() {
+        document.getElementById("code-input").value = "";
+        document.getElementById("code-output").innerHTML =
+          "Code output will appear here...";
+      }
 
-        // Progress Update Functions
-        function updateProgress(module, percentage) {
-            document.getElementById(`${module}-progress`).style.width = percentage + '%';
-            document.getElementById(`${module}-percent`).textContent = percentage + '%';
-        }
+      // Progress Update Functions
+      function updateProgress(module, percentage) {
+        document.getElementById(`${module}-progress`).style.width =
+          percentage + "%";
+        document.getElementById(`${module}-percent`).textContent =
+          percentage + "%";
+      }
 
-        // Initialize page
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('Educational Tech Stack Dashboard Loaded!');
-            console.log('Ready for interactive learning!');
-        });
+      // Initialize page
+      document.addEventListener("DOMContentLoaded", function () {
+        console.log("Educational Tech Stack Dashboard Loaded!");
+        console.log("Ready for interactive learning!");
+      });
 
-        // TODO: Students can add more interactive features here
-        // Ideas for extension:
-        // - Timer for study sessions
-        // - Achievement badges
-        // - Progress graphs
-        // - Collaborative features
-        // - More interactive exercises
+      // TODO: Students can add more interactive features here
+      // Ideas for extension:
+      // - Timer for study sessions
+      // - Achievement badges
+      // - Progress graphs
+      // - Collaborative features
+      // - More interactive exercises
     </script>
-</body>
+  </body>
 </html>
