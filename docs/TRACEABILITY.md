@@ -15,7 +15,7 @@
 | OBJ-006 | FR-04 | exercise_02 exit 0 | python3 exercise_02 </dev/null exit 0 | [x] |
 | OBJ-007 | FR-04 | exercise_03 exit 0 | echo quit | python3 exercise_03 exit 0 | [x] |
 | OBJ-008 | FR-05 | HTML structure valid | div 38/38, script 1/1 balanced | [x] |
-| OBJ-009 | FR-06 | runtime artifacts exist | manifest.json, state.json, events.jsonl | [x] |
+| OBJ-009 | FR-06 | runtime artifacts exist (written in close-loop remediation JOB-A, not run-002 IMPLEMENT) | `docs/.scratch-audit/runtime/manifest.json`, `state.json`, `events.jsonl` (17 events, all valid JSONL) | [x] |
 | OBJ-010 | AC-006 | TRACEABILITY.md exists | this file | [x] |
 | OBJ-011 | AC-006 | SECURITY.md + RISK.md exist | see below | [x] |
 | OBJ-012 | AC-006 | debrief.md 17 sections | docs/debrief.md | [x] |
