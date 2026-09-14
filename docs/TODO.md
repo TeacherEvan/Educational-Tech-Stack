@@ -23,7 +23,7 @@
 
 ## Definition of Done
 
-- All objectives above are `[x]` with live tool evidence (run-002).
+- All objectives above are `[x]` with live tool evidence (run-003).
 - `npm test`, `npm run lint`, `npm run format` all exit != 127.
 - All 3 Python exercises exit 0.
 - HTML dashboard structurally valid.

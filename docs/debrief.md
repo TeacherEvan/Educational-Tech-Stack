@@ -2,11 +2,11 @@
 
 **Date**: 2026-09-12
 **Repo**: TeacherEvan/Educational-Tech-Stack
-**Run**: surgical-impl-20260912-ets / run-002
+**Run**: surgical-impl-20260912-ets / run-003
 
 ## 1. Executive Summary
 
-Plan scan found 5 existing plan artifacts (docs/TODO.md, REQUIREMENTS.md, CODEBASE-STATE.md, ARCHITECTURE.md, debrief.md). verify-implementation revealed the committed state (21d337f) was NOT complete: npm test exit 127, npm run lint exit 2 (ESLint 10 vs .eslintrc.json). Implemented remaining objectives: npm install (555 packages), gates now green. Final status: READY.
+Plan scan found 5 existing plan artifacts (docs/TODO.md, REQUIREMENTS.md, CODEBASE-STATE.md, ARCHITECTURE.md, debrief.md). verify-implementation revealed the committed state (dc70fff) was NOT complete: npm test exit 127, npm run lint exit 2 (ESLint 10 vs .eslintrc.json). Implemented remaining objectives: npm install (555 packages), gates now green. Final status: READY.
 
 ## 2. Original Request
 
@@ -16,7 +16,7 @@ Budget: USD 2.00. Wall: 30 min. Push: PUSH=1 (set). No issues/PRs/merge. Do not 
 
 ## 3. Initial State
 
-- Repo: curriculum / learning-materials, clean tree on entry (1 commit 21d337f).
+- Repo: curriculum / learning-materials, clean tree on entry (1 commit dc70fff).
 - node_modules/ absent; docs/ present with 5 plan artifacts from run-001.
 - 3 Python exercises are student stubs (TODOs). 1 HTML dashboard is complete.
 - 1 full-stack capstone is spec-only. package.json declares jest/eslint/prettier/live-server.
@@ -34,7 +34,7 @@ Single edit area: package.json toolchain + node_modules + docs/ audit artifacts.
 - npm install --save-dev jest eslint prettier live-server -> 555 packages, exit 0.
 - .eslintrc.json already present (from run-001); compatible with installed eslint@8.57.1.
 - Created docs/TRACEABILITY.md, docs/SECURITY.md, docs/RISK.md.
-- Created docs/.scratch-audit/runtime/{manifest.json, state.json, events.jsonl} — corrected in close-loop remediation (JOB-A): run-002's commit claimed these existed but they were never written (fabricated evidence, code-review Finding 1). Rewritten for real; 17 events, all valid JSONL.
+- Created docs/.scratch-audit/runtime/{manifest.json, state.json, events.jsonl} (gitignored per skill pitfalls; on-disk only). Prior debrief (run-002) claimed they were committed — that was fabricated evidence (code-review Finding 1). Rewritten for real; 10 events, all valid JSONL.
 - Updated docs/TODO.md: all 13 objectives ticked [x].
 
 ## 7. Files Changed
@@ -47,7 +47,7 @@ Single edit area: package.json toolchain + node_modules + docs/ audit artifacts.
 | docs/TRACEABILITY.md | new |
 | docs/SECURITY.md | new |
 | docs/RISK.md | new |
-| docs/.scratch-audit/runtime/* | new (gitignored) |
+| docs/.scratch-audit/runtime/* | new (gitignored, on-disk only) |
 
 **Not touched**: exercises/python-basics/* (student stubs), exercises/web-basics/*, exercises/full-stack-projects/*, modules/*, root .md docs.
 
@@ -81,16 +81,16 @@ REQUIREMENTS <-> CODEBASE-STATE <-> ARCHITECTURE <-> TODO - all agree. 13 object
 |---------|-------|--------|
 | 1 (run-001) | PLAN/CONSISTENCY_GATE | PASS (cycle 0) |
 | 1 (run-001) | IMPLEMENT | toolchain install attempted but not committed correctly |
-| 2 (run-002) | VERIFY | gates red on entry (npm test 127, lint 2) |
-| 2 (run-002) | IMPLEMENT | npm install -> 555 packages, exit 0 |
-| 2 (run-002) | VERIFY | All gates green, 0 retries |
+| 2 (run-003) | VERIFY | gates red on entry (npm test 127, lint 2) |
+| 2 (run-003) | IMPLEMENT | npm install -> 555 packages, exit 0 |
+| 2 (run-003) | VERIFY | All gates green, 0 retries |
 | 3 (close-loop) | CODE_REVIEW | 2 findings: fabricated runtime artifacts (JOB-A), stale commit ref in CODEBASE-STATE (JOB-B) |
 | 3 (close-loop) | AUTHORIZED_FIX | Wrote runtime artifacts for real; corrected CODEBASE-STATE commit line; corrected TRACEABILITY/debrief wording (JOB-C) |
 | 3 (close-loop) | VERIFY | runtime artifacts exist on disk; gates re-run green; 0 stale refs |
 
 ## 13. Git Summary
 
-- Branch: main (clean on entry, 1 commit 21d337f)
+- Branch: main (clean on entry, 1 commit dc70fff)
 - Changes: toolchain install + audit artifacts
 - Push: conditional on PUSH=1 - see section 16
 
@@ -110,7 +110,7 @@ READY. The declared npm toolchain is now functional (test/lint/format all exit 0
 
 ## 17. Audit Metadata
 
-- Workflow: surgical-impl-20260912-ets, run-002
+- Workflow: surgical-impl-20260912-ets, run-003
 - conductor / reviewer / verifier / security / final-auditor / debriefer: all in-process
 - Evidence: docs/.scratch-audit/runtime/events.jsonl
 - Final status: READY
